@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+    # サービス名は自由に設定
+    django:
+        # appディレクトリの中から`Dockerfile`を探す
+        build: ./app
+        # サービス起動後に入力されるコマンドを設定
+        command: python manage.py runserver 0.0.0.0:8000
+        # データを永続化させる場合の設定。`host:container`でパスを記載
+        volumes:
+            - ./app/:/usr/src/app/
+        # 開放するポートを指定。`host:container`でポートを記載
+        ports:
+            - 8000:8000
+        # 環境変数を指定
+        env_file: .env_dev

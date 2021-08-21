@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}ファイルアップロード{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+  <br>
+  <h2 style="text-align: center;">ファイルアップロード</h2>
+  <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+    {% csrf_token %}  
+    <div class="form-group">
+      <label for="inputText">Choose a file</label>
+      <input type="file" class="dropify" name="upload" required id="id_upload" />
+    </div>
+    <br>
+    <div style="text-align: center">
+      <button type="submit" class="btn btn-primary">アップロード</button>
+    </div>
+  </form>
+
+  {% include '_message.html' %}
+
+{% endblock %}
