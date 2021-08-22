@@ -10,18 +10,14 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Pythonが標準入出力をバッファリングすることを防ぐ
 ENV PYTHONUNBUFFERED 1
 
-# ホストのpipfileをコンテナの作業ディレクトリにコピー
-COPY ./Pipfile /usr/src/app/
-COPY ./Pipfile.lock /usr/src/app/
+# ホストのカレントディレクトリ（現在はappディレクトリ）を作業ディレクトリにコピー
+COPY . /usr/src/app/
 
 # Pipenvをインストール
 # pipfileからパッケージをインストールしてDjango環境を構築
 RUN pip install --upgrade pip \
 && pip install pipenv \
 && pipenv install --system --dev
-
-# ホストのカレントディレクトリ（現在はappディレクトリ）を作業ディレクトリにコピー
-COPY . /usr/src/app/
 
 # entrypoint.shを実行
 ENTRYPOINT ["/usr/src/app/entrypoint.prod.sh"]
