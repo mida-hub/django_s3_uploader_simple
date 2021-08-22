@@ -32,5 +32,5 @@ class RootDocumentCreateView(S3UploadCreateView):
     model = RootDocument
     fields = ['upload',]
     success_url = reverse_lazy('uploader') # urls.py の name を指定する
-    template_name = "web/document.html" 
+    template_name = "web/uploader.html" 
 
