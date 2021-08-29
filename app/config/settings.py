@@ -28,9 +28,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
 
-# ALLOWED_HOSTS = []
 # 許可するホストを記載
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -137,10 +137,11 @@ STATICFILES_DIRS = [
 PAGE_PER_ITEM = 5
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# EC2にRole付与する場合はコメントアウトする
 AWS_ACCESS_KEY_ID = os.environ.get('accesskey', 'accesskey')
 AWS_SECRET_ACCESS_KEY = os.environ.get('secretkey', 'secretkey')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('bucket_name', 'bucket_name')
 
 # S3 の処理実行時に storage_backends.py を読み込む設定
 DEFAULT_FILE_STORAGE = 'config.storage_backends.MediaStorage'
-AWS_SCHEMA_LOCATION = 'sub/'
+AWS_SCHEMA_LOCATION = 'sub'

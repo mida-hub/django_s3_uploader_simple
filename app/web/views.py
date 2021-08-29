@@ -22,7 +22,7 @@ class S3UploadCreateView(CreateView):
             file_obj.name = file_name
             request.FILES['upload'] = file_obj
 
-            s3_path = 's3://' + settings.AWS_STORAGE_BUCKET_NAME + '/' + settings.AWS_SCHEMA_LOCATION + file_name
+            s3_path = 's3://' + settings.AWS_STORAGE_BUCKET_NAME + '/' + settings.AWS_SCHEMA_LOCATION + '/' + file_name
             messages.success(request, s3_path)
 
         return super().post(request, *args, **kwargs)
