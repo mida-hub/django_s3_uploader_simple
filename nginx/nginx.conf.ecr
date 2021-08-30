@@ -1,0 +1,18 @@
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  localhost;
+    client_max_body_size 500M;
+
+    location / {
+        proxy_pass   http://localhost:8000;
+
+        add_header X-Server-Hostname $hostname;
+        add_header X-Server-Address $server_addr;
+    }
+
+    # 静的ファイルの要求をstaticfilesにルーティング
+    location /staticfiles/ {
+        alias /usr/src/app/staticfiles/;
+    }
+}
